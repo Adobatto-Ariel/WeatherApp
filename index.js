@@ -14,7 +14,7 @@ const setWeatherData = (data) => {
         location: data.name,
         description: data.weather[0].main,
         humidity: data.main.humidity,
-        pressure: data.main.pressure,
+        pressure: `Pressure: ${data.main.pressure} hpa`,
         temperature: data.main.temp,
         date: getDate(),
     };
@@ -33,12 +33,15 @@ const log = (position) => {
         `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
     )
         .then((response) => response.json())
-        .then((data) => setWeatherData(data))
-
-        .then((position) => console.log(position));
+        .then((data) => setWeatherData(data));
 };
 
 //Obtenemos ubicacion del usuario - coordenadas
 const onLoad = () => {
     navigator.geolocation.getCurrentPosition(log);
 };
+//Seteo de background segun clima
+/* const body = document.querySelector("body");
+const setBackground = weather => {
+
+} */

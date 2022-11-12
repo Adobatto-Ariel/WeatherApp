@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(35, 35, 35);
+    color: #fff;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: system-ui, -apple-system, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#container{
+    padding: 20px;
+    width: 50%;
+    height: 70%;
+    border: 1px solid #fff;
+}
+
+#temperature{
+    font-size: 50px;
+}
