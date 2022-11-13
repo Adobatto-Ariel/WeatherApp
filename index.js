@@ -1,5 +1,17 @@
 const API_KEY = "2065a5d17dec65d54a1f9a150be46f12";
 
+//Seteo de background segun clima
+const body = document.querySelector("body");
+const setBackground = (weather) => {
+    if (weather < 18) {
+        body.setAttribute("class", "cold");
+    } else if (weather >= 18 && weather < 25) {
+        body.setAttribute("class", "mild");
+    } else {
+        body.setAttribute("class", "hot");
+    }
+};
+
 const getDate = () => {
     let date = new Date();
     return `${date.getDate()}-${("0" + (date.getMonth() + 1)).slice(
@@ -13,16 +25,19 @@ const setWeatherData = (data) => {
     const weatherData = {
         location: data.name,
         description: data.weather[0].main,
-        humidity: data.main.humidity,
+        humidity: `Humidity ${data.main.humidity}%`,
         pressure: `Pressure: ${data.main.pressure} hpa`,
-        temperature: data.main.temp,
-        date: getDate(),
+        temperature: `${data.main.temp}ºC`,
+        date: `Date: ${getDate()}`,
     };
-
+    console.log(typeof data.main.temp);
     //Asigno la informacion a cada elemento
     Object.keys(weatherData).forEach((key) => {
         document.getElementById(key).textContent = weatherData[key];
     });
+
+    //Envio clima para setear backgroung
+    setBackground(data.main.temp);
 };
 
 //Recibe la data del usuario - La posicion
@@ -40,8 +55,3 @@ const log = (position) => {
 const onLoad = () => {
     navigator.geolocation.getCurrentPosition(log);
 };
-//Seteo de background segun clima
-/* const body = document.querySelector("body");
-const setBackground = weather => {
-
-} */
